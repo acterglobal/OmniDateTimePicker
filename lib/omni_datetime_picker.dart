@@ -10,6 +10,13 @@ import 'package:flutter/material.dart';
 import 'package:omni_datetime_picker/src/omni_datetime_picker.dart';
 import 'package:omni_datetime_picker/src/omni_datetime_range_picker.dart';
 
+export 'package:omni_datetime_picker/src/omni_datetime_picker.dart'
+    show OmniDateTimePicker;
+export 'package:omni_datetime_picker/src/omni_datetime_range_picker.dart'
+    show OmniDateTimeRangePicker;
+
+import 'dart:core';
+
 /// Show dialog of the [OmniDateTimePicker]
 ///
 /// Returns a DateTime
@@ -57,21 +64,26 @@ Future<DateTime?> showOmniDateTimePicker({
       return Theme(
         data: theme ?? Theme.of(context),
         child: OmniDateTimePicker(
-          separator: separator,
-          title: title,
-          type: type,
-          initialDate: initialDate,
-          firstDate: firstDate,
-          lastDate: lastDate,
-          is24HourMode: is24HourMode,
-          isShowSeconds: isShowSeconds,
-          minutesInterval: minutesInterval,
-          secondsInterval: secondsInterval,
-          isForce2Digits: isForce2Digits,
-          borderRadius: borderRadius,
-          constraints: constraints,
-          selectableDayPredicate: selectableDayPredicate,
-        ),
+            separator: separator,
+            title: title,
+            type: type,
+            initialDate: initialDate,
+            firstDate: firstDate,
+            lastDate: lastDate,
+            is24HourMode: is24HourMode,
+            isShowSeconds: isShowSeconds,
+            minutesInterval: minutesInterval,
+            secondsInterval: secondsInterval,
+            isForce2Digits: isForce2Digits,
+            borderRadius: borderRadius,
+            constraints: constraints,
+            selectableDayPredicate: selectableDayPredicate,
+            onSelect: (dt) {
+              Navigator.pop<DateTime>(
+                context,
+                dt,
+              );
+            }),
       );
     },
   );
@@ -144,6 +156,12 @@ Future<List<DateTime>?> showOmniDateTimeRangePicker({
           constraints: constraints,
           selectableDayPredicate: selectableDayPredicate,
           defaultView: defaultView,
+          onSelect: (dts) {
+            Navigator.pop<List<DateTime>>(
+              context,
+              dts,
+            );
+          },
         ),
       );
     },

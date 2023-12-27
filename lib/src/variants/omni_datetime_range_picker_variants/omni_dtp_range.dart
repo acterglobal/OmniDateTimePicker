@@ -23,6 +23,7 @@ class OmniDtpRange extends StatefulWidget {
     this.type,
     this.selectableDayPredicate,
     this.defaultView = DefaultView.start,
+    required this.onSelect,
   });
 
   final DateTime? startInitialDate;
@@ -41,6 +42,7 @@ class OmniDtpRange extends StatefulWidget {
   final BoxConstraints? constraints;
   final OmniDateTimePickerType? type;
   final bool Function(DateTime)? selectableDayPredicate;
+  final Function(List<DateTime>) onSelect;
   final DefaultView defaultView;
 
   @override

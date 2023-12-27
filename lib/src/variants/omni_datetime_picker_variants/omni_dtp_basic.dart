@@ -20,6 +20,7 @@ class OmniDtpBasic extends StatelessWidget {
     this.constraints,
     this.type,
     this.selectableDayPredicate,
+    required this.onSelect,
   });
 
   final Widget? separator;
@@ -35,6 +36,7 @@ class OmniDtpBasic extends StatelessWidget {
   final BoxConstraints? constraints;
   final OmniDateTimePickerType? type;
   final bool Function(DateTime)? selectableDayPredicate;
+  final Function(DateTime) onSelect;
 
   @override
   Widget build(BuildContext context) {
@@ -102,10 +104,7 @@ class OmniDtpBasic extends StatelessWidget {
                 ),
               ),
             ButtonRow(onSavePressed: () {
-              Navigator.pop<DateTime>(
-                context,
-                selectedDateTime,
-              );
+              onSelect(selectedDateTime);
             }),
           ],
         ),
